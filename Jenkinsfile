@@ -15,6 +15,6 @@ pipeline {
 
 def get_first() {
     node('master') {
-        return env.PATH.split(':')[0]
+        return env.ENV
     }
 }
