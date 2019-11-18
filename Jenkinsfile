@@ -1,20 +1,21 @@
 pipeline {
    agent none
    environment {
-       first_path = get_first()
+       input_params = get_param()
    }
    stages {
        stage('example') {
             agent { label 'master' }
             steps {
-                print(env.first_path)
+                print("Client:", env.input_params.split(',')[0])
+				print("Environment:", env.input_params.split(',')[1])
             }
         }
     }
 }
 
-def get_first() {
+def get_param() {
     node('master') {
-        return env.ENV
+        return env.ENV,env.CLIENT
     }
 }
