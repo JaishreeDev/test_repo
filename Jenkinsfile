@@ -1,14 +1,20 @@
 pipeline {
    agent none
    environment {
-       color = "blue"
+       first_path = get_first()
    }
    stages {
-       stage('first') {
-            agent any
+       stage('example') {
+            agent { label 'master' }
             steps {
-               sh "printenv | sort"
+                print(env.first_path)
             }
         }
+    }
+}
+
+def get_first() {
+    node('master') {
+        return env.PATH.split(':')[0]
     }
 }
