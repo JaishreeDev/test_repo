@@ -7,7 +7,7 @@ pipeline {
        stage('first') {
             agent any
             steps {
-               sh "printenv | sort"
+               sh "${env.color}"
             }
         }
     }
