@@ -5,7 +5,7 @@ pipeline {
    }
    stages {
        stage('first') {
-            agent { label 'master' }
+            agent any
             steps {
                sh "printenv | sort"
             }
