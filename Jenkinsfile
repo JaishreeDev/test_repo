@@ -7,7 +7,7 @@ pipeline {
        stage('first') {
             agent any
             steps {
-               sh "${env.color}"
+               bat "set"
             }
         }
     }
