@@ -15,7 +15,6 @@ pipeline {
 
 def get_param() {
     node('master') {
-		
-        return env.ENV
+		return env.ENV
     }
 }
