@@ -7,7 +7,7 @@ pipeline {
        stage('example') {
             agent { label 'master' }
             steps {
-                echo"Client:" ${env.input_params}
+                echo "Client: ${env.input_params}"
             }
         }
     }
