@@ -7,9 +7,9 @@ pipeline {
   environment {
       input_params = get_param()
 	  //AWS_DEFAULT_REGION = ${AWS_DEFAULT_REGION}
-	  AWS_ACCESS_KEY_ID = ${AWS_ACCESS_KEY_ID}
-	  AWS_SECRET_ACCESS_KEY_ID = ${AWS_SECRET_ACCESS_KEY_ID}
-	  AWS_CLI_PATH = ${AWS_CLI_PATH}
+	  AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID
+	  AWS_SECRET_ACCESS_KEY_ID = AWS_SECRET_ACCESS_KEY_ID
+	  AWS_CLI_PATH = AWS_CLI_PATH
   }
 
   stages {
@@ -17,10 +17,17 @@ pipeline {
 
     stage('Start') {
       steps {
-		withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY_ID']]) {
+	  
+		/*withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY_ID']]) {
         aws("--region=eu-west-1")
 		sh 'aws s3 ls'
-        }
+        }*/
+		
+		sh 'aws configure set AWS_ACCESS_KEY_ID ${AWS_ACCESS_KEY_ID}'
+		sh 'aws configure set AWS_SECRET_ACCESS_KEY ${AWS_SECRET_ACCESS_KEY}'
+		sh 'aws configure set AWS_DEFAULT_REGION ${AWS_DEFAULT_REGION}'
+		sh 'aws configure list'
+		sh 'aws s3 ls'
 	  }
 	}
     stage('Variable') {
