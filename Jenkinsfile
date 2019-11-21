@@ -13,7 +13,9 @@ pipeline {
 
     stage('Start') {
       steps {
-		aws s3 ls
+		withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY_ID']]) {
+        aws("--region=eu-west-1")
+		echo "aws s3 ls"
       }
     }
 
