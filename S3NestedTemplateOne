@@ -1,0 +1,35 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "e2b8f35e-0d2e-41e2-a01f-52e53f3d50d9": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 198,
+                    "y": 47
+                },
+                "z": 0
+            }
+        }
+    },
+    "Resources": {
+        "S3NestedStack": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "e2b8f35e-0d2e-41e2-a01f-52e53f3d50d9"
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "BucketName": {
+            "Value": "!Ref S3NestedStack",
+            "Description": "Name of S3 Bucket - Nested"
+        }
+    }
+}
