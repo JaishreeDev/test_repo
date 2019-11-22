@@ -23,8 +23,10 @@ pipeline {
         aws("--region=eu-west-1")
 		sh 'aws s3 ls'
         }*/
+		script{
+			sh "aws configure set AWS_ACCESS_KEY_ID ${env.AWS_ACCESS_KEY_ID}"
+		}
 		
-		sh 'aws configure set AWS_ACCESS_KEY_ID ${env.AWS_ACCESS_KEY_ID}'
 		
 		/*echo 'aws configure set AWS_SECRET_ACCESS_KEY ${env.AWS_SECRET_ACCESS_KEY}'
 		echo 'aws configure set AWS_DEFAULT_REGION ${env.AWS_DEFAULT_REGION}'
