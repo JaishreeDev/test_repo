@@ -1,3 +1,5 @@
+#!groovy
+
 pipeline {
   agent any
 
@@ -19,13 +21,16 @@ pipeline {
     stage('Start') {
       steps {
 	  
+		runAwsCmd()
+	  
 		/*withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY_ID']]) {
         aws("--region=eu-west-1")
 		sh 'aws s3 ls'
         }*/
-		script{
+		
+		/*script{
 			sh "aws configure set AWS_ACCESS_KEY_ID ${env.AWS_ACCESS_KEY_ID}"
-		}
+		}*/
 		
 		
 		/*echo 'aws configure set AWS_SECRET_ACCESS_KEY ${env.AWS_SECRET_ACCESS_KEY}'
@@ -41,6 +46,10 @@ pipeline {
       }
     }
   }
+}
+
+def runAwsCmd() {
+	sh "aws configure set AWS_ACCESS_KEY_ID ${env.AWS_ACCESS_KEY_ID}"
 }
 
 def get_param() {
