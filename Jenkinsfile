@@ -13,9 +13,10 @@ pipeline {
           //agent any
          steps {
             echo 'Hello World'
+            echo "Workspace: ${workspace}"
             //bat '%AWS_CLI_PATH%'
             bat "%AWS_CLI_PATH% configure list"
-            bat "%AWS_CLI_PATH% cloudformation create-stack --stack-name S3BucketStack --template-body file://${workspace}/S3TemplateOne.json --parameters file://${workspace}/S3Param.json"
+            bat "%AWS_CLI_PATH% cloudformation create-stack --stack-name S3BucketStack --template-body file://\"${workspace}\"/S3TemplateOne.json --parameters file://\"${workspace}\"/S3Param.json"
          }
       }
 
