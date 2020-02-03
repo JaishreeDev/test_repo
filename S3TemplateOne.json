@@ -1,0 +1,20 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+	"Parameters": {
+		"MyBucket": { "Type": "String" }
+	}
+    "Resources": {
+        "S3NestedStack": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "BucketName": { "Ref": "MyBucket" }
+            }
+        }
+    },
+    "Outputs": {
+        "BucketName": {
+            "Value": "!Ref S3NestedStack",
+            "Description": "Name of S3 Bucket - Nested"
+        }
+    }
+}

@@ -1,0 +1,6 @@
+[
+	{
+      "ParameterKey":"MyBucket",
+      "ParameterValue":"pb-analytics-raw-lz-${env.env}-test"
+	}
+]
