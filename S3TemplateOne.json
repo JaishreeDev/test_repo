@@ -2,7 +2,7 @@
     "AWSTemplateFormatVersion": "2010-09-09",
 	"Parameters": {
 		"MyBucket": { "Type": "String" }
-	}
+	},
     "Resources": {
         "S3NestedStack": {
             "Type": "AWS::S3::Bucket",
